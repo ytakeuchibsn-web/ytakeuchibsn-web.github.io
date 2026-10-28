@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATIVE STUDIO | 高品質Web制作・VBA・業務効率化</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        tential: {
+                            dark: '#0B0F19',      /* 深いスレートブラック */
+                            card: '#111827',
+                            lightBg: '#F8FAFC',   /* 清潔感のあるオフホワイト */
+                            accent: '#10B981',    /* 信頼と活力を与えるエメラルド */
+                            accentHover: '#059669',
+                            muted: '#64748B',
+                        }
+                    },
+                    keyframes: {
+                        pulseSubtle: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.02)' },
+                        }
+                    },
+                    animation: {
+                        pulseSubtle: 'pulseSubtle 3s infinite ease-in-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .backdrop-blur-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-tential-lightBg text-slate-900 font-sans antialiased selection:bg-tential-accent selection:text-white pb-24 md:pb-0">
+
+    <!-- 1. HEADER (TENTIALスタイル・固定ナビゲーション) -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/90 backdrop-blur-header border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-tential-dark rounded-xl flex items-center justify-center text-tential-accent font-black text-xl tracking-wider group-hover:scale-105 transition-transform">
+                        C
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-lg md:text-xl tracking-tight text-slate-900">CREATIVE STUDIO</span>
+                        <span class="text-[10px] text-tential-muted font-medium tracking-widest uppercase">Professional Solutions</span>
+                    </div>
+                </a>
+
+                <!-- PC用ナビゲーション -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#about" class="hover:text-tential-dark transition-colors">コンセプト</a>
+                    <a href="#portfolio" class="hover:text-tential-dark transition-colors">制作実績</a>
+                    <a href="#downloads" class="hover:text-tential-dark transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-tential-accent animate-ping"></span>
+                        無料サンプル
+                    </a>
+                    <a href="#services" class="hover:text-tential-dark transition-colors">メニュー・料金</a>
+                    <a href="#flow" class="hover:text-tential-dark transition-colors">ご依頼の流れ</a>
+                </nav>
+
+                <!-- ココナラ誘導CTAボタン（安全なHTMLタグ指定） -->
+                <div class="flex items-center space-x-3">
+                    <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 bg-tential-dark hover:bg-slate-800 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 border border-slate-700">
+                        <span>ココナラで相談する</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-tential-accent"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION (ファーストビュー) -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-tential-dark text-white">
+        <!-- 背景の輝き演出 -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-tential-accent rounded-full filter blur-[128px]"></div>
+            <div class="absolute top-1/2 -left-40 w-96 h-96 bg-blue-600 rounded-full filter blur-[128px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- テキスト情報 -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-semibold text-tential-accent tracking-wide uppercase">
+                        <i class="fa-solid fa-shield-halved"></i> ココナラ認定・安心決済対応
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
+                        圧倒的なクオリティと<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-tential-accent via-emerald-300 to-teal-200">
+                            ビジネスの速度を、両立する。
+                        </span>
+                    </h1>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        Webサイト制作・VBA自動化ツール・業務改善Excelの開発に対応。<br class="hidden sm:inline">
+                        ココナラでの取引実績多数。安全・確実な決済と迅速な返信でお客様の課題を解決します。
+                    </p>
+
+                    <!-- ボタン群（安全な標準リンク） -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer"
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-tential-accent hover:bg-tential-accentHover text-slate-950 font-bold px-8 py-4 rounded-full text-base transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 animate-pulseSubtle">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>ココナラで無料見積もり・相談</span>
+                        </a>
+
+                        <a href="#portfolio" 
+                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800/90 hover:bg-slate-700 text-slate-200 font-medium px-7 py-4 rounded-full text-base transition-all border border-slate-700">
+                            <span>実績・無料サンプルを見る</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- 実績指標 -->
+                    <div class="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">99.8<span class="text-sm text-tential-accent">%</span></div>
+                            <div class="text-xs text-slate-400 mt-1">満足度評価</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">24<span class="text-sm text-slate-400">h以内</span></div>
+                            <div class="text-xs text-slate-400 mt-1">平均初回返信時間</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white">150<span class="text-sm text-tential-accent">+</span></div>
+                            <div class="text-xs text-slate-400 mt-1">納品実績数</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- メインビジュアル -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="relative bg-slate-800/60 p-4 rounded-3xl border border-slate-700/80 shadow-2xl backdrop-blur-md">
+                            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 group">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Dashboard Showcase" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-900/80 backdrop-blur-md border border-slate-700/50">
+                                    <div class="flex items-center justify-between text-xs font-medium text-slate-300 mb-1">
+                                        <span class="text-tential-accent font-semibold">最新の事例</span>
+                                        <span>Web & Excel Automation</span>
+                                    </div>
+                                    <div class="text-sm font-bold text-white">洗練されたデザイン & 業務自動化ツール</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PORTFOLIO SHOWCASE (制作・開発実績) -->
+    <section id="portfolio" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-tential-accent font-bold text-xs uppercase tracking-widest block mb-2">PORTFOLIO</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">制作・開発実績</h2>
+            <p class="text-slate-600 mt-3 text-sm sm:text-base">
+                これまでに手掛けたWebサイト制作およびVBA・業務ツールの実績サンプルです。
+            </p>
+
+            <!-- フィルタータブ -->
+            <div class="flex flex-wrap justify-center gap-2 mt-8" id="filter-tabs">
+                <button onclick="filterPortfolio('all', this)" class="tab-btn active px-5 py-2 rounded-full text-sm font-semibold transition-all bg-tential-dark text-white shadow-md">すべて</button>
+                <button onclick="filterPortfolio('web', this)" class="tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">Webサイト制作</button>
+                <button onclick="filterPortfolio('vba', this)" class="tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">VBA・自動化</button>
+                <button onclick="filterPortfolio('excel', this)" class="tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200">Excel管理ツール</button>
+            </div>
+        </div>
+
+        <!-- 実績カード一覧 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+            
+            <!-- カード 1 (Web) -->
+            <div class="portfolio-item web bg-white rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <div class="relative aspect-video overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80" 
+                         alt="EC LP" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 bg-tential-dark/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full">Web Design</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-tential-accent transition-colors">高級アパレルブランド LP制作</h3>
+                        <p class="text-slate-600 text-xs mt-2 line-clamp-2 leading-relaxed">
+                            ミニマルデザインとスムーズなスクロール演出を特徴としたレスポンシブWebサイト。
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> 納期: 約10日</span>
+                        <button onclick="openModal('web1')" class="text-xs font-bold text-tential-dark hover:text-tential-accent inline-flex items-center gap-1">
+                            詳細を見る <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- カード 2 (VBA) -->
+            <div class="portfolio-item vba bg-white rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <div class="relative aspect-video overflow-hidden bg-slate-900 flex items-center justify-center p-6">
+                    <div class="text-center">
+                        <i class="fa-solid fa-file-excel text-5xl text-emerald-500 mb-2"></i>
+                        <div class="text-xs text-slate-400 font-mono">Auto_Report_Generator.xlsm</div>
+                    </div>
+                    <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full">VBA / Macro</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-tential-accent transition-colors">売上データ集計・PDF全自動出力ツール</h3>
+                        <p class="text-slate-600 text-xs mt-2 line-clamp-2 leading-relaxed">
+                            複数拠点のデータ集計とPDF作成をワンクリックで処理する高速VBAマクロ。
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> 納期: 約3日</span>
+                        <button onclick="openModal('vba1')" class="text-xs font-bold text-tential-dark hover:text-tential-accent inline-flex items-center gap-1">
+                            詳細を見る <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- カード 3 (Excel) -->
+            <div class="portfolio-item excel bg-white rounded-2xl overflow-hidden border border-slate-200/80 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                <div class="relative aspect-video overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" 
+                         alt="Dashboard" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-3 left-3 bg-blue-600 text-white text-[11px] font-bold px-3 py-1 rounded-full">Excel Template</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-tential-accent transition-colors">案件進捗＆収益管理ダッシュボード</h3>
+                        <p class="text-slate-600 text-xs mt-2 line-clamp-2 leading-relaxed">
+                            直感的なグラフ化と入力規則を備えた、高機能管理用Excelフォーマット。
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> 納期: 即日〜2日</span>
+                        <button onclick="openModal('excel1')" class="text-xs font-bold text-tential-dark hover:text-tential-accent inline-flex items-center gap-1">
+                            詳細を見る <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. SAMPLE DOWNLOAD (無料サンプル配布・安全なdownload属性指定) -->
+    <section id="downloads" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-tential-accent text-xs font-bold">
+                            <i class="fa-solid fa-download"></i> 無料サンプル配布中
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                            ご依頼前に、実際のクオリティをご確認ください
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                            実際に使用できるサンプルフォーマット（Excel / VBAデモ）をダウンロードいただけます。<br>
+                            セキュリティ保護された安全なサンプルファイルです。
+                        </p>
+                        <div class="flex items-center gap-4 text-xs text-slate-400 pt-2">
+                            <span><i class="fa-solid fa-circle-check text-tential-accent mr-1"></i> ウィルスチェック完了済</span>
+                            <span><i class="fa-solid fa-circle-check text-tential-accent mr-1"></i> マクロ安全確認済</span>
+                        </div>
+                    </div>
+
+                    <!-- ダウンロードカード（HTML5 download属性使用） -->
+                    <div class="lg:col-span-5 bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold text-xl">
+                                <i class="fa-solid fa-file-excel"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-white">業務効率化VBAサンプル.xlsm</div>
+                                <div class="text-xs text-slate-400">ファイルサイズ: 245 KB</div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-400">
+                            以下のボタンをクリックすると、サンプルの保存処理が実行されます。
+                        </p>
+
+                        <!-- 安全なダウンロードリンク構造 -->
+                        <a href="data:text/plain;charset=utf-8,CreativeStudio_Sample_File" 
+                           download="業務効率化VBAサンプル.txt"
+                           class="w-full bg-tential-accent hover:bg-tential-accentHover text-slate-950 font-bold py-3.5 px-4 rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                            <i class="fa-solid fa-download"></i>
+                            <span>サンプルファイルをダウンロード</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SERVICES & PRICING (サービス・料金目安) -->
+    <section id="services" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-tential-accent font-bold text-xs uppercase tracking-widest block mb-2">SERVICES</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">提供メニュー・価格目安</h2>
+            <p class="text-slate-600 mt-3 text-sm sm:text-base">
+                ココナラ経由の安全な取引体制と明瞭な価格ラインをご提示しております。
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- 1. Webサイト制作 -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                <div class="space-y-6">
+                    <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Webサイト・LP制作</h3>
+                        <p class="text-slate-500 text-xs mt-2">デザイン構築から公開サポートまで一貫対応</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <div class="text-2xl font-extrabold text-slate-900">¥30,000 <span class="text-xs font-normal text-slate-500">〜 / 件</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-600">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> スマホ表示最適化（レスポンシブ）</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> おしゃれなアニメーション演出</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> お問い合わせフォーム設定</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer" 
+                       class="w-full bg-slate-100 hover:bg-tential-dark hover:text-white text-slate-800 font-bold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
+                        <span>ココナラで相談する</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. VBA自動化 (一番人気) -->
+            <div class="bg-tential-dark text-white rounded-3xl p-8 border-2 border-tential-accent shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
+                <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-tential-accent text-slate-950 font-extrabold text-[10px] uppercase px-4 py-1 rounded-full tracking-wider shadow-md">
+                    一番人気
+                </span>
+                <div class="space-y-6">
+                    <div class="w-14 h-14 bg-slate-800 text-tential-accent rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Excel VBA 業務自動化</h3>
+                        <p class="text-slate-400 text-xs mt-2">毎日の面倒な手作業をワンクリック処理</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800">
+                        <div class="text-2xl font-extrabold text-white">¥10,000 <span class="text-xs font-normal text-slate-400">〜 / 件</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> データ集計・転記自動化マクロ</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> PDF出力・メール自動連携機能</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> 納品後無料修正サポート付き</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer" 
+                       class="w-full bg-tential-accent hover:bg-tential-accentHover text-slate-950 font-bold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                        <span>ココナラで相談する</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Excelテンプレート -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                <div class="space-y-6">
+                    <div class="w-14 h-14 bg-slate-100 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900">Excelテンプレート作成</h3>
+                        <p class="text-slate-500 text-xs mt-2">入力ミスを防止する使いやすいフォーマット</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <div class="text-2xl font-extrabold text-slate-900">¥5,000 <span class="text-xs font-normal text-slate-500">〜 / 件</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-600">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> 高度な関数（XLOOKUP等）組み込み</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> 可視化ダッシュボードグラフ</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> 入力エラー防止ルール設定</li>
+                    </ul>
+                </div>
+                <div class="pt-8">
+                    <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer" 
+                       class="w-full bg-slate-100 hover:bg-tential-dark hover:text-white text-slate-800 font-bold py-3 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
+                        <span>ココナラで相談する</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FLOW (ご依頼の流れ) -->
+    <section id="flow" class="py-24 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-tential-accent font-bold text-xs uppercase tracking-widest block mb-2">FLOW</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">ご依頼の流れ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+                    <div class="w-10 h-10 bg-slate-900 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-2">1</div>
+                    <h3 class="font-bold text-slate-900 text-base">当サイト確認・相談</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        実績やサンプルをご確認の上、ココナラのメッセージフォームからお気軽にご相談ください。
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+                    <div class="w-10 h-10 bg-slate-900 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-2">2</div>
+                    <h3 class="font-bold text-slate-900 text-base">お見積り・ココナラで購入</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        仕様と納期をご確認いただいた後、ココナラ上で安全に決済・取引を開始します。
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+                    <div class="w-10 h-10 bg-tential-accent text-slate-950 font-bold rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                    <h3 class="font-bold text-slate-900 text-base">制作・確認・納品完了</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        完成品をご確認いただき、修正や微調整を行って納品完了となります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER & STICKY CTA -->
+    <footer class="bg-tential-dark text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div class="flex justify-center items-center space-x-3">
+                <div class="w-8 h-8 bg-slate-800 text-tential-accent font-extrabold rounded-lg flex items-center justify-center text-sm">C</div>
+                <span class="font-bold text-white text-lg tracking-tight">CREATIVE STUDIO</span>
+            </div>
+            <p class="text-xs max-w-md mx-auto text-slate-500">
+                安心のココナラ決済対応。Webサイト制作・VBA自動化ツール開発に関するお見積りはメッセージより無料でお受けしています。
+            </p>
+            <div class="pt-6 border-t border-slate-800 text-[11px] text-slate-600">
+                &copy; 2026 Creative Studio All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- 固定フッター誘導バー -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-3 sm:p-4 shadow-2xl">
+        <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+            <div class="hidden sm:flex flex-col">
+                <span class="text-xs font-bold text-white flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-tential-accent animate-ping"></span>
+                    ココナラで無料見積もり・メッセージ受付中
+                </span>
+                <span class="text-[10px] text-slate-400">※ご相談段階で費用が発生することは一切ありません</span>
+            </div>
+            <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto bg-tential-accent hover:bg-tential-accentHover text-slate-950 font-bold px-8 py-3 rounded-full text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-comments"></i>
+                <span>ココナラで相談する（公式外部サイト）</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- 8. MODAL (実績詳細) -->
+    <div id="modal-backdrop" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modal-content"></div>
+
+            <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span class="text-xs text-slate-500">同様の制作をご希望ですか？</span>
+                <a href="https://coconala.com/" target="_blank" rel="noopener noreferrer" 
+                   class="w-full sm:w-auto bg-tential-dark hover:bg-slate-800 text-white font-bold py-2.5 px-6 rounded-full text-xs transition-all flex items-center justify-center gap-2">
+                    <span>ココナラで見積もりを相談</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. JAVASCRIPT (モーダル・フィルター表示処理) -->
+    <script>
+        function filterPortfolio(category, btn) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('#filter-tabs .tab-btn');
+
+            buttons.forEach(b => {
+                b.classList.remove('bg-tential-dark', 'text-white', 'shadow-md');
+                b.classList.add('bg-white', 'text-slate-600', 'hover:bg-slate-100');
+            });
+
+            btn.classList.remove('bg-white', 'text-slate-600', 'hover:bg-slate-100');
+            btn.classList.add('bg-tential-dark', 'text-white', 'shadow-md');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        const modalData = {
+            web1: {
+                title: "高級アパレルブランド LP制作",
+                tag: "Web Design / Coding",
+                desc: "TENTIALのようなシンプルかつ清潔感のあるトーンで構築したランディングページです。レスポンシブ表示と滑らかなスクロールアニメーションを備えています。",
+                details: ["スマホ完全対応", "軽量・高速コーディング", "お問い合わせ連携"],
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=700&q=80"
+            },
+            vba1: {
+                title: "売上データ集計・PDF全自動出力ツール",
+                tag: "VBA / Macro",
+                desc: "フォルダ内の複数Excelファイルを自動集計し、ワンクリックでPDF出力およびメール下書き作成まで完結させる自動化プログラムです。",
+                details: ["作業時間を約2時間から3秒に短縮", "初心者でも操作しやすい専用ボタン配置", "エラー検知ロジック組み込み"],
+                image: null
+            },
+            excel1: {
+                title: "案件進捗＆収益管理ダッシュボード",
+                tag: "Excel Template",
+                desc: "関数（XLOOKUP等）とグラフを組み合わせ、ひと目で進捗と収益状況がわかるダッシュボード型Excelテンプレートです。",
+                details: ["自動グラフ可視化", "入力エラー制御設定済み", "カスタマイズ対応可能"],
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80"
+            }
+        };
+
+        function openModal(id) {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+            const data = modalData[id];
+
+            if (!data) return;
+
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <span class="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-800 rounded-full inline-block">${data.tag}</span>
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900">${data.title}</h3>
+                    ${data.image ? `<img src="${data.image}" class="w-full aspect-video object-cover rounded-2xl border border-slate-200">` : ''}
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${data.desc}</p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div class="text-xs font-bold text-slate-800">主な特徴・ポイント:</div>
+                        <ul class="text-xs text-slate-600 space-y-1">
+                            ${data.details.map(d => `<li class="flex items-center gap-2"><i class="fa-solid fa-check text-tential-accent"></i> ${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            backdrop.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+        }
+
+        document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
