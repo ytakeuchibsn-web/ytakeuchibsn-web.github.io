@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お悩みサポート・業務効率化窓口 | 温かく丁寧に対応します</title>
+    <title>Excel・スプレッドシート効率化サポート | めんどくさい作業を自動化</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,13 +14,13 @@
                         sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
                     },
                     colors: {
-                        tential: {
-                            dark: '#0B0F19',       /* 深いスレートブラック */
-                            card: '#111827',       /* ダークカード用 */
-                            lightBg: '#F8FAFC',    /* 清潔感あるオフホワイト */
-                            accent: '#0D9488',     /* 落ち着きと安心感のあるティールグリーン */
-                            accentHover: '#0F766E',
-                            muted: '#64748B',
+                        freee: {
+                            blue: '#0066FF',        /* 鮮やかなfreee風ブルー */
+                            blueHover: '#0052CC',
+                            lightBg: '#F4F7FB',     /* 清潔感あるライトブルーグレー */
+                            dark: '#1A2B4C',        /* 引き締まったネイビー */
+                            cardBg: '#FFFFFF',
+                            accent: '#FF6B6B',      /* ポップなアクセントカラー */
                         }
                     }
                 }
@@ -28,134 +28,50 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
         body {
             font-family: 'Noto Sans JP', 'Inter', sans-serif;
-            background-color: #F8FAFC;
-            color: #1E293B;
+            background-color: #F4F7FB;
+            color: #1A2B4C;
             overflow-x: hidden;
+        }
+        .blob-bg {
+            background-image: radial-gradient(#0066FF 0.6.px, transparent 0.6px);
+            background-size: 24px 24px;
         }
     </style>
 </head>
-<body class="bg-tential-lightBg text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900">
+<body class="bg-freee-lightBg text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
 
-    <!-- ヒーローセクション（ファーストビュー） -->
-    <section class="relative min-h-[90vh] flex items-center justify-center bg-tential-dark text-white px-6 py-20">
-        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#0D9488_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
-        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-8">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-teal-900/60 text-teal-300 text-xs font-medium tracking-widest uppercase border border-teal-700/50">
-                初心者の方・丸投げも大歓迎です
-            </span>
-            
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                あなたの「困った」を、<br>
-                <span class="text-teal-400">あたたかく、丁寧に</span>解決します。
-            </h1>
-            
-            <p class="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                「エクセル作業を楽にしたい」「どう進めていいか分からない…」そんなお悩みに寄り添います。難しい専門用語を使わず、あなたのペースに合わせて親身にサポートいたします。
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <a href="https://coconala.com/services/4441077?ref=top_histories&ref_kind=home&ref_no=2&tr_v=2" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="w-full sm:w-auto px-8 py-4 bg-teal-600 hover:bg-teal-500 text-white font-medium rounded-full transition-all duration-300 shadow-lg shadow-teal-900/30 text-center">
-                    ココナラで相談してみる（無料お見積り）
-                </a>
-                <a href="#support" 
-                   class="w-full sm:w-auto px-8 py-4 bg-slate-800/80 hover:bg-slate-700 text-slate-300 font-medium rounded-full transition-all duration-300 border border-slate-700 text-center">
-                    サポート内容を見る
-                </a>
-            </div>
+    <!-- ヘッダー簡易版 -->
+    <header class="w-full py-4 px-6 md:px-12 bg-white border-b border-slate-200/60 flex justify-between items-center sticky top-0 z-50">
+        <div class="font-bold text-lg text-freee-dark flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-freee-blue inline-block"></span>
+            Excel・自動化お悩みサポート
         </div>
-    </section>
+        <a href="https://coconala.com/services/4441077?ref=top_histories&ref_kind=home&ref_no=2&tr_v=2" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="px-5 py-2.5 bg-freee-blue hover:bg-freee-blueHover text-white font-medium text-sm rounded-full transition-all shadow-sm">
+            ココナラで相談する
+        </a>
+    </header>
 
-    <!-- サポート内容・できることセクション -->
-    <section id="support" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="text-center space-y-4 mb-16">
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900">このようなお悩みをサポートします</h2>
-            <p class="text-slate-600 max-w-xl mx-auto">「何から手を付けていいか分からない」状態でも大丈夫です。一緒に整理しながら進めていきましょう。</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- カード1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xl mb-6">01</div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Excel・スプレッドシートのお悩み解決</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    「毎月の集計に時間がかかっている」「関数や数式が組めない」といったお困りごとを、あなた専用に使いやすく整えます。
+    <!-- ヒーローセクション（ポップ＆クリーンなFreee風） -->
+    <section class="relative pt-16 pb-24 px-6 md:px-12 bg-white overflow-hidden border-b border-slate-200/60">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="inline-block px-3.5 py-1.5 rounded-full bg-blue-50 text-freee-blue text-xs font-bold tracking-wider uppercase">
+                    日々の面倒な作業をスッキリ解決
+                </span>
+                
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-freee-dark">
+                    「その手作業、<br><span class="text-freee-blue">ボタン1つ</span>にしませんか？」
+                </h1>
+                
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                    エクセルやスプレッドシートの「めんどくさい」「時間がかかる」を解消。あなたのお悩みに合わせて、使いやすい仕組みづくりをサポートします。
                 </p>
-            </div>
-
-            <!-- カード2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xl mb-6">02</div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">マクロ・簡単な自動化サポート</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    面倒なコピペ作業やルーティンワークを効率化したい方へ。無理のない形での自動化や仕組み作りをお手伝いします。
-                </p>
-            </div>
-
-            <!-- カード3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow">
-                <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xl mb-6">03</div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">お仕事・作業の伴走サポート</h3>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    「パソコン作業が苦手…」「誰に相談していいか分からない」そんな不安に寄り添い、丁寧に対話しながら形にします。
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- サンプルダウンロードセクション -->
-    <section class="py-20 bg-white border-y border-slate-200/80 px-6">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <span class="text-teal-600 text-xs font-semibold tracking-widest uppercase">Free Sample</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900">無料サンプル・資料のお試し</h2>
-            <p class="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
-                実際の雰囲気や動作をご確認いただけるサンプルをご用意しています。お気軽にダウンロードしてご覧ください。
-            </p>
-            <div class="pt-4">
-                <!-- ※ここにOneDrive等の共有リンクをあとから貼り付けられます -->
-                <a href="#" 
-                   download 
-                   class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-full transition-all text-sm shadow-md">
-                    サンプルファイルをダウンロード (OneDrive)
-                </a>
-                <p class="text-xs text-slate-400 mt-3">※リンク先はのちほどOneDriveの共有URLに変更できます。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 安心の理由・メッセージ -->
-    <section class="py-24 px-6 max-w-4xl mx-auto">
-        <div class="bg-teal-50/60 border border-teal-100 rounded-3xl p-8 md:p-12 space-y-6">
-            <h2 class="text-xl md:text-2xl font-bold text-slate-900 text-center">初めての方でもご安心ください</h2>
-            <div class="space-y-4 text-slate-700 text-sm md:text-base leading-relaxed">
-                <p>
-                    「こんな初歩的なことを聞いてもいいのかな…」と心配される必要は一切ありません。どのようなご相談でも、専門用語を使わず分かりやすく丁寧にお答えします。
-                </p>
-                <p>
-                    まずはココナラのチャットから、現在のお困りごとや「こんな風にできたらいいな」というご希望をお聞かせください。あなたにぴったりの解決方法をご提案いたします。
-                </p>
-            </div>
-            <div class="text-center pt-4">
-                <a href="https://coconala.com/services/4441077?ref=top_histories&ref_kind=home&ref_no=2&tr_v=2" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="inline-block px-8 py-4 bg-teal-600 hover:bg-teal-500 text-white font-medium rounded-full transition-all shadow-lg shadow-teal-900/25">
-                    ココナラでお気軽に相談する
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- フッター -->
-    <footer class="py-12 bg-tential-dark text-slate-400 text-center text-xs px-6">
-        <p>&copy; 2026 Support Portal. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+                
+                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                    <a href
